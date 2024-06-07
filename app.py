@@ -1,4 +1,3 @@
-
 import streamlit as st
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -19,7 +18,7 @@ def deserialize_binary_crossentropy(config):
 # ... rest of your code ...
 
 def load_model_cached():
-    return load_model('vgg109.h5', custom_objects={'BinaryCrossentropy':deserialize_binary_crossentropy})
+    return load_model('models/vgg109.h5', custom_objects={'BinaryCrossentropy': deserialize_binary_crossentropy})
 
 
 model = load_model_cached()
