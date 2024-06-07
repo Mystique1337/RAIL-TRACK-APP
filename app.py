@@ -15,7 +15,7 @@ def deserialize_binary_crossentropy(config):
     return BinaryCrossentropy.from_config(config)
 
 def load_model_cached():
-    return load_model('models/vgg109.h5', custom_objects={'BinaryCrossentropy': deserialize_binary_crossentropy})
+    return load_model('vgg109.h5', custom_objects={'BinaryCrossentropy': deserialize_binary_crossentropy})
 
 model = load_model_cached()
 
