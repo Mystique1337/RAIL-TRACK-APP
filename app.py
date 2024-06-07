@@ -5,21 +5,17 @@ import numpy as np
 import os
 from tensorflow.keras.losses import BinaryCrossentropy
 import tempfile
-st.title("Rail Track App Test ")
+
+st.title("Rail Track App Test")
 
 @st.cache_resource
-
-
 def deserialize_binary_crossentropy(config):
-    # Remove the 'fn' argument if present
-    config.pop('fn', None)
+    if 'reduction' in config:
+        config.pop('reduction')
     return BinaryCrossentropy.from_config(config)
 
-# ... rest of your code ...
-
 def load_model_cached():
-    return load_model('vgg109.h5', custom_objects={'BinaryCrossentropy': deserialize_binary_crossentropy})
-
+    return load_model('models/vgg109.h5', custom_objects={'BinaryCrossentropy': deserialize_binary_crossentropy})
 
 model = load_model_cached()
 
@@ -37,7 +33,8 @@ def load_and_preprocess_image(img_path):
     img_array = np.expand_dims(img_array, axis=0)
 
     return img_array
-def predict_image( img_path):
+
+def predict_image(img_path):
     # Preprocess the image
     img_array = load_and_preprocess_image(img_path)
 
